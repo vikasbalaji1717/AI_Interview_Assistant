@@ -1,2 +1,2 @@
-streamlit.txt
+streamlit
 groq
