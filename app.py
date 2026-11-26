@@ -30,16 +30,18 @@ role = st.selectbox(
     ],
 )
 if st.button("Generate Interview Questions"):
+    prompt = f"Generate 5 interview questions for the role of {role}."
 
-  prompt = "Generate 5 interview questions for the role of " + role
+    response = client.chat.completions.create(
+        model="openai/gpt-oss-120b",
+        messages=[
+            {
+                "role": "system",
+                "content": "You are an expert technical interviewer.",
+            },
+            {"role": "user", "content": prompt},
+        ],
+    )
 
-  response = client.chat.complrtions.create(
-     model="openai/gpt-oss-120b"
-     messages=[
-            {"role" : "system" , "content" : "You are an expert technical Interviewer"},
-        {"role": "user" , "content": prompt}
-     ]
-  )
-  output = response.choices[0].messages.content
-
-  st.write(output)
+    output = response.choices[0].message.content
+    st.write(output)
