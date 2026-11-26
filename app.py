@@ -11,15 +11,21 @@ try:
 except (keyError, FileNotFoundError):
   st.error('GROQ_API_KEY is missing. Add it to Streamlit Cloud - App setting')
   st.stop() 
-import streamlit as st 
-from grog import Grog
-client=Groq(api_key=st.secrets["GROQ_API_KEY"])
+import streamlit as st
+from groq import Groq
+
+client = Groq(api_key=st.secrets["GROQ_API_KEY"])
+
 st.title("AI Interview Assistant")
-role = st.selectbox("Select Job Role", [
-    "Python Developer",
-    "Java Developer",
-    "Data Analyst",
-    "Machine Learning Engineer",
-    "Software Engineer",
-    "HR Executive"
-])
+
+role = st.selectbox(
+    "Select Job Role",
+    [
+        "Python Developer",
+        "Java Developer",
+        "Data Analyst",
+        "Machine Learning Engineer",
+        "Software Engineer",
+        "HR Executive",
+    ],
+)
