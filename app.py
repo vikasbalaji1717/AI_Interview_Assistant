@@ -10,4 +10,16 @@ try:
   st.write("API connection successful")
 except (keyError, FileNotFoundError):
   st.error('GROQ_API_KEY is missing. Add it to Streamlit Cloud - App setting')
-  st.stop()
+  st.stop() 
+import streamlit as st 
+from grog import Grog
+client=Groq(api_key=st.secrets["GROQ_API_KEY"])
+st.title("AI Interview Assistant")
+role = st.selectbox("Select Job Role", [
+    "Python Developer",
+    "Java Developer",
+    "Data Analyst",
+    "Machine Learning Engineer",
+    "Software Engineer",
+    "HR Executive"
+])
